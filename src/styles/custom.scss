@@ -1,7 +1,7 @@
 body {
-	background: linear-gradient(-45deg, #f4dbd3, #e9ccd7, #b3cfd9, #c1e3db);
+	background: linear-gradient(-45deg, #fcdcd1, #ffdfeb, #d1f3ff, #d3fff5, #fffdc5);
 	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+	animation: gradient 12s ease infinite;
 	height: 100vh;
 }
 
@@ -14,5 +14,17 @@ body {
 	}
 	100% {
 		background-position: 0% 50%;
+	}
+}
+
+.pg-container {
+	border-top: 4px solid #4338CA
+}
+
+.lead-gen-input {
+	outline: none;
+
+	&:focus {
+		box-shadow: 0 0 0 4px rgba(67, 56, 202, 0.2);
 	}
 }

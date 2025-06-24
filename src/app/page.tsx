@@ -131,19 +131,19 @@ export default function HomePage() {
   };
 
   const inputClassName = (fieldName: keyof FormData) => {
-    const baseClass = "mt-1 block w-full rounded-md px-3 py-1.5 border-2 shadow-sm h-10 focus:ring-indigo-500 transition-colors";
+    const baseClass = "lead-gen-input mt-1 block w-full rounded-md px-3 py-1.5 border-2 shadow-sm h-10 focus:ring-indigo-500 transition-colors";
     const errorClass = errors[fieldName] ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-indigo-600";
     return `${baseClass} ${errorClass}`;
   };
 
   const textareaClassName = (fieldName: keyof FormData) => {
-    const baseClass = "mt-1 block w-full rounded-md px-3 py-1.5 border-2 shadow-sm focus:ring-indigo-500 transition-colors";
+    const baseClass = "lead-gen-input mt-1 block w-full rounded-md px-3 py-1.5 border-2 shadow-sm focus:ring-indigo-500 transition-colors";
     const errorClass = errors[fieldName] ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-indigo-600";
     return `${baseClass} ${errorClass}`;
   };
 
   return (
-    <div className="overflow-hidden py-24 sm:py-32" style={{ borderTop: '3px solid #4338CA' }}>
+    <div className="overflow-hidden py-24 sm:py-32 pg-container">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pt-0 lg:pr-8">
