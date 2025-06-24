@@ -410,9 +410,13 @@ export default function HomePage() {
 							</form>
             </div>
           </div>
-          
         </div>
-      </div>
-    </div>
-  );
+				<div className="text-sm disclaimer-area">
+					<p className="text-xs mt-16 text-center text-gray-500">
+						© {new Date().getFullYear()} Source Trusted Pros. All rights reserved. Designed and developed by <a href="https://github.com/dmanzer2" className="text-indigo-600 hover:underline">David Manzer</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	);
 }

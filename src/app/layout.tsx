@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Lead Generation - Smart Home Installations',
-  description: 'Smart home installation lead generation service',
+  title: 'Smart Home Installation Experts in Phoenix & East Valley',
+  description: 'Find trusted smart home installation pros in Phoenix, Mesa, Queen Creek, San Tan Valley, and the East Valley. Get expert setup for lighting, security, and home automation—fast and reliable.',
 }
 
 export default function RootLayout({
