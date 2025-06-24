@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { BoltIcon, CloudArrowUpIcon, LockClosedIcon, ServerIcon } from "@heroicons/react/20/solid";
+import { SignalIcon, BoltIcon, CloudArrowUpIcon, LockClosedIcon, ServerIcon } from "@heroicons/react/20/solid";
 
 
 // Validation schema
@@ -146,9 +146,9 @@ export default function HomePage() {
     <div className="overflow-hidden py-24 sm:py-32" style={{ borderTop: '3px solid #4338CA' }}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-          
           <div className="lg:pt-0 lg:pr-8">
             <div className="lg:max-w-lg">
+							<SignalIcon width={50} height={50} className="text-indigo-600 mb-4" />
               <h1 className="text-base/7 font-semibold text-indigo-600">Your East Valley Smart Home Installation Resource</h1>
               <h2 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
                 Smarter Living Starts Here, Sign Up for Expert Guidance
