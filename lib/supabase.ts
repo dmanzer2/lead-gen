@@ -1,52 +1,49 @@
-// lib/supabase.js
-import { createClient } from '@supabase/supabase-js'
-import { Contact, ContactData } from './types';
+import { createClient } from '@supabase/supabase-js';
+import { Contact, ContactFormData } from './types';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
-
-export const supabase = createClient(supabaseUrl, supabaseKey)
+export function getSupabase() {
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+  const supabaseKey = process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+  if (!supabaseUrl || !supabaseKey) throw new Error('supabaseUrl and supabaseKey are required');
+  return createClient(supabaseUrl, supabaseKey);
+}
 
 // Helper functions for your contact form
-
-// Get all budget ranges for dropdown
 export const getBudgetRanges = async () => {
+  const supabase = getSupabase();
   const { data, error } = await supabase
-    .from('Budget Ranges')
+    .from('budget_ranges')
     .select('*')
-    .order('display_order')
-  
+    .order('display_order');
   if (error) {
-    console.error('Error fetching budget ranges:', error)
-    return []
+    console.error('Error fetching budget ranges:', error);
+    return [];
   }
-  return data
-}
+  return data;
+};
 
-// Get all project timelines for dropdown
 export const getProjectTimelines = async () => {
+  const supabase = getSupabase();
   const { data, error } = await supabase
-    .from('Project Timelines')
+    .from('project_timelines')
     .select('*')
-    .order('display_order')
-  
+    .order('display_order');
   if (error) {
-    console.error('Error fetching project timelines:', error)
-    return []
+    console.error('Error fetching project timelines:', error);
+    return [];
   }
-  return data
-}
+  return data;
+};
 
-export const submitContact = async (contactData: ContactData): Promise<Contact> => {
+export const submitContact = async (contactData: ContactFormData): Promise<Contact> => {
+  const supabase = getSupabase();
   const { data, error } = await supabase
-    .from('Contacts')
+    .from('contacts')
     .insert([contactData])
-    .select()
-
+    .select();
   if (error) {
-    console.error('Error submitting contact:', error)
-    throw error
+    console.error('Error submitting contact:', error);
+    throw error;
   }
-  
-  return data[0] as Contact
-}
+  return data[0] as Contact;
+};
