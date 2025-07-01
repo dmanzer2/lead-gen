@@ -10,7 +10,7 @@ import { ContactFormData, BudgetRange, ProjectTimeline } from '../../lib/types';
 
 // Validation schema and form type
 const formSchema = z.object({
-  contact_type: z.enum(['business', 'personal']),
+  contact_type: z.enum(['Business', 'Personal']),
   first_name: z.string()
     .min(2, 'First name must be at least 2 characters')
     .max(50, 'First name must be less than 50 characters')
@@ -83,7 +83,7 @@ export default function ContactForm() {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      contact_type: 'business',
+      contact_type: 'Business',
     },
   });
 
@@ -152,7 +152,7 @@ export default function ContactForm() {
               <input
                 {...register('contact_type')}
                 type="radio"
-                value="business"
+                value="Business"
                 className="form-radio text-indigo-600"
               />
               <span className="ml-2">Business</span>
@@ -161,7 +161,7 @@ export default function ContactForm() {
               <input
                 {...register('contact_type')}
                 type="radio"
-                value="personal"
+                value="Personal"
                 className="form-radio text-indigo-600"
               />
               <span className="ml-2">Personal</span>

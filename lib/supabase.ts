@@ -37,6 +37,7 @@ export const getProjectTimelines = async () => {
 
 export const submitContact = async (contactData: ContactFormData): Promise<Contact> => {
   const supabase = getSupabase();
+  console.log('Submitting contactData:', contactData);
   const { data, error } = await supabase
     .from('contacts')
     .insert([contactData])
