@@ -4,7 +4,6 @@
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { submitContact } from '../../lib/supabase'
 import { z } from 'zod';
 import { ContactFormData, BudgetRange, ProjectTimeline } from '../../lib/types';
 
@@ -91,22 +90,42 @@ export default function ContactForm() {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    // Check for valid budget and timeline IDs before submitting
+    const validBudgetIds = budgetRanges.map((range) => range.id.toString());
+    const validTimelineIds = projectTimelines.map((timeline) => timeline.id.toString());
+    if (!validBudgetIds.includes(data.estimated_budget_id)) {
+      setIsSubmitting(false);
+      setSubmitStatus('error');
+      setSubmitMessage('Please select a valid budget range.');
+      return;
+    }
+    if (!validTimelineIds.includes(data.project_timeline_id)) {
+      setIsSubmitting(false);
+      setSubmitStatus('error');
+      setSubmitMessage('Please select a valid project timeline.');
+      return;
+    }
     try {
-      // Exclude the honeypot field before submitting to Supabase
+      // Exclude the honeypot field before submitting to API
       const { website, ...rest } = data;
-      const contactData: ContactFormData = {
-        ...rest,
-        estimated_budget_id: Number(data.estimated_budget_id),
-        project_timeline_id: Number(data.project_timeline_id),
-      };
-      await submitContact(contactData);
+      const contactData = { ...rest };
+      // Send to Next.js API route instead of calling submitContact directly
+      const response = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(contactData),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit form.');
+      }
       setSubmitStatus('success');
       setSubmitMessage("Thank you! We'll contact you within 24 hours to discuss your smart home project.");
       reset();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Form submission error:', error); // Log the error for debugging
       setSubmitStatus('error');
-      setSubmitMessage('Failed to submit form. Please try again.');
+      setSubmitMessage(error.message || 'Failed to submit form. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
