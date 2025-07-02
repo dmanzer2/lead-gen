@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
 import { Pool } from 'pg';
+import { Resend } from 'resend';
 
 // Backend validation schema (should match frontend)
 const formSchema = z.object({
@@ -65,12 +66,45 @@ export async function POST(req: NextRequest) {
     ];
 
     const client = await pool.connect();
+    let insertedRow;
     try {
       const dbRes = await client.query(query, values);
-      return NextResponse.json({ message: 'Lead submitted successfully!', data: dbRes.rows[0] }, { status: 200 });
+      insertedRow = dbRes.rows[0];
     } finally {
       client.release();
     }
+
+    // Send emails using Resend
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const userEmail = email;
+    const adminEmail = 'delivered@resend.dev';
+    // ! const adminEmail = 'dmanzer2@gmail.com';
+
+    // Send confirmation to user
+    try {
+      await resend.emails.send({
+        from: 'Your Company <noreply@yourdomain.com>', // Must be a verified sender in Resend
+        to: userEmail,
+        subject: 'Thank you for contacting us!',
+        html: `<p>Hi ${first_name},<br/>Thank you for reaching out. We'll contact you soon!</p>`
+      });
+    } catch (err) {
+      console.error('Resend user email error:', err);
+    }
+
+    // Send notification to yourself
+    try {
+      await resend.emails.send({
+        from: 'Your Company <noreply@yourdomain.com>',
+        to: adminEmail,
+        subject: 'New Lead Submitted',
+        html: `<p>New lead from ${first_name} ${last_name} (${email})</p>`
+      });
+    } catch (err) {
+      console.error('Resend admin email error:', err);
+    }
+
+    return NextResponse.json({ message: 'Lead submitted successfully!', data: insertedRow }, { status: 200 });
   } catch (error) {
     console.error('Postgres insert error:', error);
     return NextResponse.json({ error: 'Failed to submit lead.', details: error }, { status: 500 });
