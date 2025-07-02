@@ -5,27 +5,27 @@ import ContactForm from './ContactForm';
 
 const features = [
 	{
-		name: "Smart Home Installation in Phoenix, Mesa & the East Valley",
+		name: "Smart Home Installation in Phoenix, Mesa, Scottsdale, Gilbert & the East Valley",
 		description:
-			"A professionally installed smart home system in Mesa, Queen Creek, San Tan Valley, or anywhere in the East Valley gives you seamless control over lighting, climate, security, and entertainment—from your phone or voice assistant. Whether you live in Eastmark, Blossom Rock, Cadence, or a brand-new build in Queen Creek, we help make everyday living more secure, convenient, and energy efficient.",
+			"A professionally installed smart home system in Mesa, Scottsdale, Paradise Valley, Gilbert, Queen Creek, San Tan Valley, or anywhere in the East Valley gives you seamless control over lighting, climate, security, and entertainment—from your phone or voice assistant. Whether you live in Eastmark, Blossom Rock, Cadence, Arcadia, North Scottsdale, DC Ranch, Silverleaf, Desert Mountain, or a brand-new build in Queen Creek, we help make everyday living more secure, convenient, and energy efficient.",
 		icon: CloudArrowUpIcon,
 	},
 	{
 		name: "Security-Focused Smart Home Installations",
 		description:
-			"From video doorbells and smart locks to full home security systems with real-time monitoring, our Phoenix-area smart home solutions put peace of mind at your fingertips—whether you're at home or away. Popular in Queen Creek, Mesa, and new East Valley developments, our security-first installations are designed for modern Arizona living.",
+			"From video doorbells and smart locks to full home security systems with real-time monitoring, our Phoenix-area smart home solutions put peace of mind at your fingertips—whether you're at home or away. Popular in Queen Creek, Mesa, Gilbert, Scottsdale, Paradise Valley, Arcadia, North Scottsdale, and new East Valley developments, our security-first installations are designed for modern Arizona living.",
 		icon: LockClosedIcon,
 	},
 	{
 		name: "Comfort & Convenience for Every New Home",
 		description:
-			"Imagine walking into a perfectly lit, climate-controlled space in your new Blossom Rock or San Tan Valley home—your environment adjusting automatically to your preferences. Our East Valley smart home installs include voice-controlled lights, smart thermostats, and connected devices that make life easier from day one.",
+			"Imagine walking into a perfectly lit, climate-controlled space in your new Blossom Rock, San Tan Valley, Eastmark, Cadence, Barney Farms, or Storyrock home—your environment adjusting automatically to your preferences. Our East Valley smart home installs include voice-controlled lights, smart thermostats, and connected devices that make life easier from day one.",
 		icon: ServerIcon,
 	},
 	{
 		name: "Energy-Saving Solutions for Arizona Homes",
 		description:
-			"Smart technology isn't just about convenience—it's about lowering your utility bills too. Our installations across Phoenix, Mesa, Apache Junction, and Eastmark help homeowners monitor and reduce energy use with smart thermostats, adaptive lighting, and more.",
+			"Smart technology isn't just about convenience—it's about lowering your utility bills too. Our installations across Phoenix, Mesa, Scottsdale, Paradise Valley, Arcadia, North Scottsdale, Gilbert, Queen Creek, San Tan Valley, Apache Junction, Eastmark, Cadence, Blossom Rock, Barney Farms, and Storyrock help homeowners monitor and reduce energy use with smart thermostats, adaptive lighting, and more.",
 		icon: BoltIcon,
 	},
 ];

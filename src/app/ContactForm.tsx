@@ -132,7 +132,7 @@ export default function ContactForm() {
   };
 
   const inputClassName = (fieldName: keyof FormData) => {
-    const baseClass = "lead-gen-input mt-1 block w-full rounded-md px-3 py-1.5 border-2 shadow-sm h-10 focus:ring-indigo-500 transition-colors";
+    const baseClass = "lead-gen-input mt-1 block w-full rounded-md px-3 py-1.5 border-2 shadow-sm h-12 focus:ring-indigo-500 transition-colors";
     const errorClass = errors[fieldName] ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-indigo-600";
     return `${baseClass} ${errorClass}`;
   };
@@ -166,7 +166,7 @@ export default function ContactForm() {
         />
         <fieldset className="mb-5">
           <legend className="text-sm font-medium text-gray-700 mb-2">Contact Type</legend>
-          <div className="flex gap-6">
+          <div className="flex gap-6 mb-3">
             <label className="inline-flex items-center">
               <input
                 {...register('contact_type')}
@@ -352,7 +352,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full rounded-md bg-indigo-600 px-4 py-2 mt-4 h-12 text-white font-semibold shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
