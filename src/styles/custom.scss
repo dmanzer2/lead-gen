@@ -1,30 +1,82 @@
 body {
-	background: linear-gradient(-45deg, #fcdcd1, #ffdfeb, #d1f3ff, #d3fff5, #fffdc5);
-	background-size: 400% 400%;
-	animation: gradient 12s ease infinite;
-	height: 100%;
+  background: linear-gradient(-45deg, #fcdcd1, #ffdfeb, #d1f3ff, #d3fff5, #fffdc5);
+  background-size: 400% 400%;
+  animation: gradient 12s ease infinite;
+  height: 100%;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .pg-container {
-	border-top: 4px solid #4338CA
+  border-top: 4px solid #4338CA
 }
 
 .lead-gen-input {
-	outline: none;
+  outline: none;
 
-	&:focus {
-		box-shadow: 0 0 0 4px rgba(67, 56, 202, 0.2);
-	}
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(67, 56, 202, 0.2);
+  }
+}
+
+@keyframes fadeInSequenceDot {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+	30% { opacity: 1; }
+ 	80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeInSequenceInner {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+	50% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeInSequenceMiddle {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+	70% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeInSequenceOuter {
+  0% { opacity: 0; }
+	70% { opacity: 1; }
+	80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.signal-dot {
+  animation: fadeInSequenceDot 3s linear infinite;
+}
+.signal-inner {
+  animation: fadeInSequenceInner 3s linear infinite;
+}
+.signal-middle {
+  animation: fadeInSequenceMiddle 3s linear infinite;
+}
+.signal-outer {
+  animation: fadeInSequenceOuter 3s linear infinite;
+}
+
+/* Initial state - all elements start invisible */
+.signal-dot,
+.signal-inner,
+.signal-middle,
+.signal-outer {
+  opacity: 0;
 }
