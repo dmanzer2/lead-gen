@@ -3,6 +3,8 @@ import { z } from 'zod';
 
 import { Pool } from 'pg';
 import { Resend } from 'resend';
+import fs from 'fs';
+import path from 'path';
 
 // Backend validation schema (should match frontend)
 const formSchema = z.object({
@@ -77,29 +79,67 @@ export async function POST(req: NextRequest) {
     // Send emails using Resend
     const resend = new Resend(process.env.RESEND_API_KEY);
     const userEmail = email;
-    const adminEmail = 'delivered@resend.dev';
-    // ! const adminEmail = 'dmanzer2@gmail.com';
+    const adminEmail = process.env.ADMIN_EMAIL || 'delivered@resend.dev';
+    // Set sender address based on environment
+    const fromAddress = process.env.RESEND_FROM || 'onboarding@resend.dev';
 
+    // Helper to load and inject variables into HTML template (async, non-blocking)
+    async function renderTemplate(templateName: string, vars: Record<string, string>) {
+      const templatePath = path.join(process.cwd(), 'emails', templateName);
+      let html = await fs.promises.readFile(templatePath, 'utf8');
+      for (const [key, value] of Object.entries(vars)) {
+        html = html.replace(new RegExp(`{{\\s*${key}\\s*}}`, 'g'), value);
+      }
+      return html;
+    }
+
+    // Prepare user email HTML with all available fields
+    let userHtml: string;
+    const userVars = {
+      first_name,
+      last_name,
+      email,
+      company_name: company_name || '',
+      phone_number,
+      city,
+      zip_code,
+      az_county,
+      comments,
+    };
+    try {
+      userHtml = await renderTemplate('email-template1.html', userVars);
+    } catch (err) {
+      console.error('Error loading user email template:', err);
+      userHtml = `<p>Hi ${first_name},<br/>Thank you for reaching out. We'll contact you soon!</p>`;
+    }
+
+    console.log('Resend: about to send user email to:', userEmail, 'from:', fromAddress);
     // Send confirmation to user
     try {
-      await resend.emails.send({
-        from: 'Your Company <noreply@yourdomain.com>', // Must be a verified sender in Resend
+      const userRes = await resend.emails.send({
+        from: fromAddress,
         to: userEmail,
         subject: 'Thank you for contacting us!',
-        html: `<p>Hi ${first_name},<br/>Thank you for reaching out. We'll contact you soon!</p>`
+        html: userHtml
       });
+      console.log('Resend: user email response:', userRes);
     } catch (err) {
       console.error('Resend user email error:', err);
     }
 
+    // Prepare admin email HTML (simple for now)
+    const adminHtml = `<p>New lead from ${first_name} ${last_name} (${email})</p>`;
+
+    console.log('Resend: about to send admin email to:', adminEmail, 'from:', fromAddress);
     // Send notification to yourself
     try {
-      await resend.emails.send({
-        from: 'Your Company <noreply@yourdomain.com>',
+      const adminRes = await resend.emails.send({
+        from: fromAddress,
         to: adminEmail,
         subject: 'New Lead Submitted',
-        html: `<p>New lead from ${first_name} ${last_name} (${email})</p>`
+        html: adminHtml
       });
+      console.log('Resend: admin email response:', adminRes);
     } catch (err) {
       console.error('Resend admin email error:', err);
     }
