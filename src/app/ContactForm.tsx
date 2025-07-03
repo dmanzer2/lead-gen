@@ -121,11 +121,13 @@ export default function ContactForm() {
       }
       setSubmitStatus('success');
       setSubmitMessage("Thank you! We'll contact you within 24 hours to discuss your smart home project.");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       reset();
     } catch (error: any) {
       console.error('Form submission error:', error); // Log the error for debugging
       setSubmitStatus('error');
       setSubmitMessage(error.message || 'Failed to submit form. Please try again.');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
       setIsSubmitting(false);
     }
