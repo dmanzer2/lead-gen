@@ -34,6 +34,7 @@ export default function HomePage() {
 	return (
 		<div className="overflow-hidden py-24 sm:py-32 pg-container">
 			<div className="mx-auto max-w-7xl px-6 lg:px-8">
+				
 				<div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
 					<div className="lg:pt-0 lg:pr-8">
 						<div className="lg:max-w-lg">
@@ -65,7 +66,9 @@ export default function HomePage() {
 							<ContactForm />
 						</div>
 					</div>
+
 				</div>
+
 				<div className="text-sm disclaimer-area">
 					<p className="text-xs mt-16 text-center text-gray-500">
 						© {new Date().getFullYear()} Source Trusted Pros. All rights reserved. Designed and developed by <a href="https://github.com/dmanzer2" className="text-indigo-600 hover:underline">David Manzer</a>.
