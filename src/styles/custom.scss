@@ -18,7 +18,7 @@ body {
 }
 
 .pg-container {
-  border-top: 4px solid #4338CA
+  border-top: 5px solid #4338CA
 }
 
 .lead-gen-input {
@@ -31,23 +31,23 @@ body {
 
 @keyframes fadeInSequenceDot {
   0% { opacity: 0; }
-  10% { opacity: 1; }
+  5% { opacity: 1; }
 	30% { opacity: 1; }
  	80% { opacity: 1; }
-  100% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes fadeInSequenceInner {
   0% { opacity: 0; }
-  30% { opacity: 1; }
-	50% { opacity: 1; }
+  25% { opacity: 0; }
+	45% { opacity: 1; }
   80% { opacity: 1; }
   100% { opacity: 0; }
 }
 
 @keyframes fadeInSequenceMiddle {
   0% { opacity: 0; }
-  50% { opacity: 1; }
+  45% { opacity: 0; }
 	70% { opacity: 1; }
   80% { opacity: 1; }
   100% { opacity: 0; }
@@ -55,22 +55,22 @@ body {
 
 @keyframes fadeInSequenceOuter {
   0% { opacity: 0; }
-	70% { opacity: 1; }
+	70% { opacity: 0; }
 	80% { opacity: 1; }
   100% { opacity: 0; }
 }
 
 .signal-dot {
-  animation: fadeInSequenceDot 3s linear infinite;
+  animation: fadeInSequenceDot 2s linear infinite;
 }
 .signal-inner {
-  animation: fadeInSequenceInner 3s linear infinite;
+  animation: fadeInSequenceInner 6s linear infinite;
 }
 .signal-middle {
-  animation: fadeInSequenceMiddle 3s linear infinite;
+  animation: fadeInSequenceMiddle 6s linear infinite;
 }
 .signal-outer {
-  animation: fadeInSequenceOuter 3s linear infinite;
+  animation: fadeInSequenceOuter 6s linear infinite;
 }
 
 /* Initial state - all elements start invisible */

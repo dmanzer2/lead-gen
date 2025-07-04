@@ -31,6 +31,37 @@ const features = [
 	},
 ];
 
+const featureOptions = [
+  {
+	img: '/smart-home-automation.svg',
+	alt: 'Smart Home Automation',
+	href: '/smart-home-automation',
+	title: 'Smart Home Automation',
+	desc: 'Automate lighting, climate, and security for your Phoenix or East Valley home. Seamless integration for modern living.'
+  },
+  {
+	img: '/home-security.svg',
+	alt: 'Home Security Systems',
+	href: '/home-security',
+	title: 'Home Security Systems',
+	desc: 'Protect your family with advanced video doorbells, smart locks, and 24/7 monitoring. Serving Mesa, Scottsdale, and beyond.'
+  },
+  {
+	img: '/energy-management.svg',
+	alt: 'Energy Management',
+	href: '/energy-management',
+	title: 'Energy Management',
+	desc: 'Lower utility bills with smart thermostats and adaptive lighting. Energy-saving solutions for Arizona homes.'
+  },
+  {
+	img: '/custom-installations.svg',
+	alt: 'Custom Installations',
+	href: '/custom-installations',
+	title: 'Custom Installations',
+	desc: 'Tailored smart home solutions for new builds and remodels in Queen Creek, Gilbert, and the East Valley.'
+  },
+];
+
 export default function HomePage() {
 	return (
 		<div className="overflow-hidden py-24 sm:py-32 pg-container">
@@ -41,7 +72,7 @@ export default function HomePage() {
 						<div className="lg:max-w-lg">
 							{/* <SignalIcon width={50} height={50} className="text-indigo-600 mb-4" /> */}
 							{/* Custom animated signal SVG as a component */}
-							<SignalAnimation className="w-24 h-24 text-blue-600" />
+							<SignalAnimation className="w-20 h-20 text-blue-600" />
 							<h1 className="text-base/7 font-semibold text-indigo-600">Your East Valley Smart Home Installation Resource</h1>
 							<h2 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
 								Smarter Living Starts Here, Sign Up for Expert Guidance
@@ -63,20 +94,44 @@ export default function HomePage() {
 						</div>
 					</div>
 
-					<div className="bg-white rounded-xl shadow-xl ring-1 ring-gray-400/10 p-8 flex flex-col gap-6 w-full max-w-lg mx-auto">
-						<h3 className="text-2xl font-bold text-indigo-700 mb-4">Get Expert Smart Home Advice—No Obligation, Just Answers!</h3>
-						<div className="space-y-6">
+					<div className="bg-white rounded-xl shadow-xl ring-1 ring-gray-400/10 p-8 flex flex-col gap-6 w-full max-w-lg mx-auto relative overflow-hidden">
+						{/* Decorative background image */}
+						<img 
+							src="/form-bg-image.png" 
+							alt="Smart home background" 
+							className="absolute left-0 bottom-0 w-full h-auto max-h-full object-cover opacity-30 pointer-events-none select-none z-0" 
+							aria-hidden="true"
+						/>
+						<div className="relative z-10">
+							<h3 className="text-2xl font-bold text-indigo-700 mb-4">Get Expert Smart Home Advice—No Obligation, Just Answers!</h3>
+							<div className="space-y-6">
 							<ContactForm />
+							</div>
 						</div>
 					</div>
 
 				</div>
 
-				<div className="text-sm disclaimer-area">
-					<p className="text-xs mt-16 text-center text-gray-500">
-						© {new Date().getFullYear()} Source Trusted Pros. All rights reserved. Designed and developed by <a href="https://github.com/dmanzer2" className="text-indigo-600 hover:underline">David Manzer</a>.
-					</p>
-				</div>
+			</div> {/* End .pg-container/main content */}
+			{/* Simple grid section - 4 columns, white background, full width */}
+			<section className="bg-white py-12 sm:py-16 mt-16 w-full">
+			<div className="w-full px-0">
+		<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 w-full max-w-7xl mx-auto px-6 lg:px-8">
+		  {featureOptions.map((opt) => (
+			<div key={opt.title} className="flex flex-col items-center text-center">
+			  <img src={opt.img} alt={opt.alt} className="w-20 h-20 mb-4 object-contain" style={{ filter: 'invert(18%) sepia(81%) saturate(7476%) hue-rotate(235deg) brightness(91%) contrast(101%)' }} />
+			  <a href={opt.href} className="text-indigo-700 font-semibold hover:underline mb-2">{opt.title}</a>
+			  <p className="text-xs text-gray-600">{opt.desc}</p>
+			</div>
+		  ))}
+		</div>
+			</div>
+			</section>
+
+			<div className="text-sm disclaimer-area">
+			<p className="text-xs mt-16 text-center text-gray-500">
+				© {new Date().getFullYear()} Source Trusted Pros. All rights reserved. Designed and developed by <a href="https://github.com/dmanzer2" className="text-indigo-600 hover:underline">David Manzer</a>.
+			</p>
 			</div>
 		</div>
 	);
