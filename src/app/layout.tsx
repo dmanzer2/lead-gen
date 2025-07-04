@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Smart Home Installation Experts in Phoenix & East Valley',
-  description: 'Find trusted smart home installation pros in Phoenix, Mesa, Queen Creek, San Tan Valley, and the East Valley. Get expert setup for lighting, security, and home automation—fast and reliable.',
+  title: 'Source Trusted Pros for Smart Home Installations in Phoenix',
+  description: 'Professionally installed smart home systems in Mesa, Scottsdale, Paradise Valley, Gilbert, Queen Creek, and the East Valley. Enjoy seamless control of lighting, climate, security, and entertainment—making your Arizona home more secure, convenient, and energy efficient.',
 }
 
 export default function RootLayout({
